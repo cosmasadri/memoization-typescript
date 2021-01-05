@@ -10,7 +10,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
     "build": "tsc",
-    "view:coverage": "serve coverage/lcov-report",
+    "view:coverage": "npx serve coverage/lcov-report",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map"
   },
   "devDependencies": {
