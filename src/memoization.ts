@@ -1,9 +1,11 @@
 type Func = (...args: any[]) => any;
 
-export const memoize = <F extends Func>(
+type Resolver = (...args: any[]) => string;
+
+export const memoize = <F extends Func, R extends Resolver>(
   func: F,
   timeout: number,
-  resolver?: F,
+  resolver?: R,
 ): ((...args: Parameters<F>) => ReturnType<F>) => {
   const cache = {} as any;
 
@@ -13,7 +15,7 @@ export const memoize = <F extends Func>(
 
     const memoizedValue = cache[cacheKey];
 
-    if (memoizedValue != null) {
+    if (memoizedValue !== undefined) {
       return memoizedValue;
     } else {
       const result = func(...args);
