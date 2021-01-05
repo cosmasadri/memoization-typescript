@@ -22,6 +22,7 @@ export const memoize = <F extends Func>(
       setTimeout(() => {
         delete cache[cacheKey];
       }, timeout);
+
       return result;
     }
   };
