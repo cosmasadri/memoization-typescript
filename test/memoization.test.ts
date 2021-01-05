@@ -41,6 +41,22 @@ describe('memoization', () => {
     expect(memoized(testArg)).toBe(5);
   });
 
+  test('should memoize function result of null', () => {
+    let returnValue = null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const testFunction = (key) => returnValue;
+
+    const memoized = memoize(testFunction, 1000, (key) => key);
+
+    const testArg = 'c544d3ae-a72d-4755-8ce5-d25db415b776';
+
+    expect(memoized(testArg)).toBeNull();
+
+    returnValue = 10;
+
+    expect(memoized(testArg)).toBeNull();
+  });
+
   test('should memoize function result with defferent argument', () => {
     let returnValue = 5;
     let callCount = 0;
