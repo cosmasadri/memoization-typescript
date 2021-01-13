@@ -49,16 +49,16 @@ export const memoize = <F extends Func, R extends Resolver>(
     // undeefined is set for the condition, since there is a possibility of null to be saved as value
     if (memoizedValue !== undefined) {
       return memoizedValue;
-    } else {
-      const result = func(...args);
-      cache[cacheKey] = result;
-
-      // set timeout to delete cache key
-      setTimeout(() => {
-        delete cache[cacheKey];
-      }, timeout);
-
-      return result;
     }
+
+    const result = func(...args);
+    cache[cacheKey] = result;
+
+    // set timeout to delete cache key
+    setTimeout(() => {
+      delete cache[cacheKey];
+    }, timeout);
+
+    return result;
   };
 };
