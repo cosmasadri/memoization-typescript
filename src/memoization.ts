@@ -34,8 +34,8 @@ export const memoize = <F extends Func, R extends Resolver>(
   timeout: number,
   resolver?: R,
 ): ((...args: Parameters<F>) => ReturnType<F>) => {
-  // cache object to store the cached results
-  const cache = {} as any;
+  // cache object to store the cached results (key must be string and value type is the return type of func)
+  const cache: { [key: string]: ReturnType<F> } = {};
 
   return (...args: Parameters<F>): ReturnType<F> => {
     // create cache key with resolver function if provided, otherwise stringify the args for the key
