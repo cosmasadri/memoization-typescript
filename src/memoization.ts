@@ -1,6 +1,8 @@
 type Func = (...args: any[]) => any;
 
-type Resolver = (...args: any[]) => string;
+// since resolver will take arguments for func function -> parameter types are the same
+// (!) but since args of Func take type of any[] then it doesn't matter
+type Resolver = (...args: Parameters<Func>) => string;
 
 /**
  * Creates a function that memoizes the result of func. If resolver is provided,
@@ -46,7 +48,7 @@ export const memoize = <F extends Func, R extends Resolver>(
     const memoizedValue = cache[cacheKey];
 
     // will return the memoized value if it exists, otherwise generate new and save it in cache
-    // undeefined is set for the condition, since there is a possibility of null to be saved as value
+    // undefined is set for the condition, since there is a possibility of null to be saved as value
     if (memoizedValue !== undefined) {
       return memoizedValue;
     }
