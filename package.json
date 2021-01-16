@@ -7,9 +7,10 @@
   "author": "",
   "license": "UNLICENSED",
   "scripts": {
+    "build": "tsc",
+    "lint": "npx eslint ./src",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
-    "build": "tsc",
     "view:coverage": "npx serve coverage/lcov-report",
     "clean": "rm -rf coverage src/**/*.js src/**/*.map"
   },
